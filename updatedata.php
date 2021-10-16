@@ -24,7 +24,7 @@ $user=mysqli_fetch_assoc($query);
         <form class="form form-responsive" action="editdata.php?id=<?php echo $id;?>" method="post" enctype="multipart/form-data">
             <input class="form-control mt-2" type="text" placeholder="Enter your name" value="<?php echo $user['username'];?>" name="username" required>
             <input class="form-control mt-2" type="number" placeholder="Enter your Roll number" value="<?php echo $user['roll'];?>" name="roll" required>
-            <input class="form-control mt-2" type="file" value="<?php echo $user['file'];?>" name="file" required>
+            <input class="form-control mt-2" type="file" name="file" required>
             <input class="form-control mt-2 bg-warning" type="submit" name="btn" value="Update">
         </form>
     </div>
