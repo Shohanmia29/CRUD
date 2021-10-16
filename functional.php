@@ -1,7 +1,7 @@
 <pre>
 <?php
 require_once 'db.php';
-$username=$_POST['user_name'];
+$username=htmlspecialchars(ltrim($_POST['user_name']));
 $roll=$_POST['roll'];
 $file=$_FILES['file']['name'];
 $tmp=$_FILES ["file"] ["tmp_name"];

@@ -20,7 +20,7 @@
       <!-- form start here -->
     <div class="container h-auto  shadow py-3">
         <h1 class="text-primary">CRUD Application</h1>
-        <form class="form form-responsive" action="functional.php"  htmlspecialchars   method="post" enctype="multipart/form-data">
+        <form class="form form-responsive" action="functional.php" method="post" enctype="multipart/form-data">
             <input class="form-control mt-2" type="text" placeholder="Enter your name" name="user_name" required>
             <input class="form-control mt-2" type="number" placeholder="Enter your Roll number" name="roll" required>
             <input class="form-control mt-2" type="file" name="file" required>
@@ -40,16 +40,17 @@
                <?php
                while ($result= mysqli_fetch_assoc($user_query))
                {
+                   $id=$result['id'];
                    ?>
 
               <tr>
-                 <td><?php echo $result['id']; ?></td>
+                 <td><?php echo $id;?></td>
                   <td><?php echo $result['username'] ?></td>
                   <td><?php echo $result['roll'] ?></td>
                   <td><img src="<?php echo 'upload/'.$result['photo']?>" alt="<?php echo $result['photo']?>" width="100" height="100"></td>
                   <td>
-                      <input class="bg-success btn text-white rounded" type="submit" name="edit" value="edit">
-                      <input class="bg-danger btn text-white rounded" type="submit" name="edit" value="delete">
+                   <a href="updatedata.php?id=<?php echo $id;?>" class="bg-success btn text-white rounded">Edit</a>
+                      <a  onclick="return deleteItem()" href="deletedata.php?id=<?php echo $id;?>"  class="  bg-danger btn text-white rounded">Delete</a>
                   </td>
               </tr>
                <?php
@@ -62,6 +63,16 @@
 <!-- table section end  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+      <script>
+          function deleteItem() {
+              if (confirm('Do you want to delete?')) {
+                  return true;
+              } else {
+                  alert('If you do not want to delete me, why you clicked me ???')
+                  return false;
+              }
+          }
+      </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
